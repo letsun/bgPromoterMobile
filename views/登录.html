@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=750, user-scalable=no">
+    <link rel="stylesheet" href="../css/iconfont.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+<div id="container" class="container">
+    <div class="header">
+        <div class="header-title">
+            <a class="back iconfont icon-fangxiangzuo" href="javascript:void(0);"></a>
+            <div class="title">登录</div>
+        </div>
+
+        <img class="header-bg" src="../images/1/4_1.png" alt="">
+    </div>
+    <div class="content">
+        <div class="form">
+            <div class="form-item">
+                <div class="form-key">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
+                <div class="form-val">
+                    <input class="form-input" type="text" placeholder="请输入您的姓名">
+                </div>
+            </div>
+            <div class="form-item form-code-item">
+                <div class="form-key">联系电话</div>
+                <div class="form-val">
+                    <input class="form-input" type="text" placeholder="请输入您的联系电话">
+                    <button class="get-code">获取验证码</button>
+                </div>
+            </div>
+
+            <div class="form-item">
+                <div class="form-key">验&nbsp;证&nbsp;&nbsp;码</div>
+                <div class="form-val">
+                    <input class="form-input" type="text" placeholder="请输入您收到的验证码">
+                </div>
+            </div>
+
+            <a class="form-submit" href="javascript:void(0);">登录</a>
+        </div>
+    </div>
+
+    <!--提交成功-->
+    <div class="success-win">
+        <div class="success-content">
+            <img class="success-icon" src="../images/1/3_1.png">
+
+            <div class="success-text">恭喜您,提交成功!</div>
+
+            <div class="close-success">好的</div>
+        </div>
+    </div>
+</div>
+
+<script src="../scripts/lib/jquery-2.2.2.min.js"></script>
+<script src="../scripts/lib/cityData.js"></script>
+<script src="../scripts/lib/citySelect.js"></script>
+<script>
+    var select = new citySelect({
+        province: $("#province"),
+        city: $("#city"),
+        area: $("#area"),
+        cityCon: $(".cityBox"),
+        areaCon: $(".areaBox"),
+        def: ["广东", "深圳"]
+    });
+</script>
+</body>
+
+</html>
