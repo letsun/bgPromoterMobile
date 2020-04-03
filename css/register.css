@@ -183,7 +183,7 @@ body {
 }
 .container .content .form .form-item .form-val .select-wra .select {
   position: absolute;
-  left: 0;
+  left: -1px;
   top: 53px;
   z-index: 50;
   display: none;
