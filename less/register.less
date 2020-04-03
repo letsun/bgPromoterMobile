@@ -64,6 +64,8 @@ body {
 			box-shadow: 0 5px 20px 10px #f3f3f3;
 
 			.form-item {
+				position: relative;
+
 				display: flex;
 
 				padding: 0 42px;
@@ -121,8 +123,8 @@ body {
 						.select {
 							position: absolute;
 							left: 0;
-							top: 54px;
-							z-index: 10;
+							top: 53px;
+							z-index: 50;
 
 							display: none;
 
@@ -180,6 +182,7 @@ body {
 
 						.inputBox {
 							position: relative;
+							z-index: 0;
 
 							float: left;
 
@@ -236,9 +239,21 @@ body {
 				}
 			}
 
-			.form-other-item {
-				position: relative;
+			.select-prov-item {
 				z-index: 10;
+
+				.form-val {
+					position: relative;
+					z-index: 10;
+
+					.select-wra {
+						z-index: 50;
+
+						.select {
+							z-index: 100;
+						}
+					}
+				}
 			}
 
 			.form-submit {

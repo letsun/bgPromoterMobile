@@ -8,37 +8,65 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=750, user-scalable=no">
     <link rel="stylesheet" href="../css/iconfont.css">
-    <link rel="stylesheet" href="../css/personCenrer.css">
+    <link rel="stylesheet" href="../css/personCenter.css">
 </head>
 
 <body>
 <div id="container" class="container">
     <div class="header">
         <div class="header-title">
-            <a class="back iconfont icon-fangxiangzuo" href="javascript:void(0);"></a>
+            <a class="back iconfont icon-fangxiangzuo" href="javascript:history.back(-1)"></a>
             <div class="title">个人中心</div>
         </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <img src="../images/1/5_1.png" alt="">
+            </div>
 
-        <img class="header-bg" src="../images/1/4_1.png" alt="">
+            <div class="user-mid">
+                <div class="address">江西省解放路店</div>
+                <div class="user-bottom">
+                    <div class="nickname">张三</div>
+                    <div class="mobile">15873665233</div>
+                </div>
+            </div>
+
+            <div class="review-btn">审核中</div>
+        </div>
+        <img class="header-bg" src="../images/1/5_2.png" alt="">
     </div>
+
     <div class="content">
 
+        <!--我的收益-->
+        <div class="my-income">
+            <div class="income-item">
+                <img class="income-icon" src="../images/1/5_3.png" alt="">
+
+                <div class="income-mid">
+                    <div class="income-text">我的返利</div>
+                    <div class="income-num">18888.8</div>
+                </div>
+
+                <a class="go-btn" href="javascript:void(0);">返利记录</a>
+            </div>
+
+            <div class="income-item">
+                <img class="income-icon" src="../images/1/5_4.png" alt="">
+
+                <div class="income-mid">
+                    <div class="income-text">可提现</div>
+                    <div class="income-num">188.8</div>
+                </div>
+
+                <a class="go-btn" href="javascript:void(0);">提现记录</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <script src="../scripts/lib/jquery-2.2.2.min.js"></script>
-<script src="../scripts/lib/cityData.js"></script>
-<script src="../scripts/lib/citySelect.js"></script>
-<script>
-    var select = new citySelect({
-        province: $("#province"),
-        city: $("#city"),
-        area: $("#area"),
-        cityCon: $(".cityBox"),
-        areaCon: $(".areaBox"),
-        def: ["广东", "深圳"]
-    });
-</script>
 </body>
 
 </html>

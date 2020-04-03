@@ -15,7 +15,7 @@
 <div id="container" class="container">
     <div class="header">
         <div class="header-title">
-            <a class="back iconfont icon-fangxiangzuo" href="javascript:void(0);"></a>
+            <a class="back iconfont icon-fangxiangzuo" href="javascript:history.back(-1)"></a>
             <div class="title">注册</div>
         </div>
 
@@ -26,21 +26,21 @@
             <div class="form-item">
                 <div class="form-key">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</div>
                 <div class="form-val">
-                    <input class="form-input" type="text" placeholder="请输入您的姓名">
+                    <input class="form-input" type="text" maxlength="30" data-validateInfor="{strategy:isEmpty,msg:姓名不能为空}" placeholder="请输入您的姓名">
                 </div>
             </div>
             <div class="form-item">
                 <div class="form-key">联系电话</div>
                 <div class="form-val">
-                    <input class="form-input" type="text" placeholder="请输入您的姓名">
+                    <input class="form-input" type="text" maxlength="11" data-validateInfor="{strategy:isMobile,msg:联系电话格式不正确}" placeholder="请输入您的联系电话">
                 </div>
             </div>
-            <div class="form-item form-other-item">
+            <div class="form-item form-other-item select-prov-item">
                 <div class="form-key">所属省份</div>
                 <div class="form-val">
                     <div class="select-wra">
-                        <input class="select-text" type="text" placeholder="请输入或选择您所属的省份">
-                        <i class="icon iconfont icon-fangxiangxia"></i>
+                        <input class="select-text" type="text" maxlength="30" data-validateInfor="{strategy:isEmpty,msg:所属省份不能为空}" placeholder="请输入或选择您所属的省份">
+                        <i class="icon js-icon1 iconfont icon-fangxiangxia"></i>
                         <div class="select">
                             <div class="option">广东省</div>
                             <div class="option">广东省</div>
@@ -50,15 +50,19 @@
                     </div>
                 </div>
             </div>
-            <div class="form-item">
+            <div class="form-item select-store-item">
                 <div class="form-key">所属门店</div>
                 <div class="form-val">
                     <div class="select-wra">
+                        <input class="select-text" type="text" maxlength="30" data-validateInfor="{strategy:isEmpty,msg:所属门店不能为空}" placeholder="请输入或选择您所属的门店">
+                        <i class="icon js-icon2 iconfont icon-fangxiangxia"></i>
                         <div class="select">
                             <div class="option">111111</div>
+                            <div class="option">111111</div>
+                            <div class="option">111111</div>
+                            <div class="option">111111</div>
                         </div>
-                        <input class="select-text" type="text" placeholder="请输入或选择您所属的门店">
-                        <i class="icon iconfont icon-fangxiangxia"></i>
+
                     </div>
                 </div>
             </div>
@@ -67,14 +71,14 @@
                 <div class="form-val">
                     <div class="inputBox-wra">
                         <div class="inputBox">
-                            <select class="select-text" id="province">
+                            <select class="select-text" id="province" data-validateInfor="{strategy:isEmpty,msg:省份不能为空}">
                                 <option>省</option>
                             </select>
                             <i class="icon iconfont icon-fangxiangxia"></i>
                         </div>
                         <div class="inputBox cityBox">
 
-                            <select class="select-text" id="city">
+                            <select class="select-text" id="city" data-validateInfor="{strategy:isEmpty,msg:城市不能为空}">
                                 <option>市</option>
                             </select>
                             <i class="icon iconfont icon-fangxiangxia"></i>
@@ -93,7 +97,7 @@
             <div class="form-item">
                 <div class="form-key"></div>
                 <div class="form-val">
-                    <input type="text" class="form-input" placeholder="请输入您门店的详细地址">
+                    <input type="text" class="form-input" maxlength="50" data-validateInfor="{strategy:isEmpty,msg:详细地址不能为空}" placeholder="请输入您门店的详细地址">
                 </div>
             </div>
 
@@ -114,8 +118,11 @@
 </div>
 
 <script src="../scripts/lib/jquery-2.2.2.min.js"></script>
+<script src="../scripts/lib/common.js"></script>
 <script src="../scripts/lib/cityData.js"></script>
 <script src="../scripts/lib/citySelect.js"></script>
+<script src="../scripts/lib/commonFunc.js"></script>
+<script src="../scripts/lib/validate.js"></script>
 <script>
     var select = new citySelect({
         province: $("#province"),
@@ -123,8 +130,52 @@
         area: $("#area"),
         cityCon: $(".cityBox"),
         areaCon: $(".areaBox"),
-        def: ["广东", "深圳"]
     });
+
+    // 输入框失去焦点兼容苹果系统
+    $('.container').on('blur','input,textarea,select',function(){
+        setTimeout(function () {
+            var hasFocus = $('input').is(':focus') || $('textarea').is(':focus') || $('select').is(':focus');
+            if (!hasFocus) {
+                window.scroll(0,0);
+            }
+        },100);
+    });
+
+    // 点击显示省份选择框
+    $('.select-prov-item .js-icon1').on('click',function () {
+        $('.select').hide();
+        $(this).siblings('.select').show();
+    });
+
+    // 点击选择省份
+    $('.select-prov-item').on('click','.option',function () {
+        var html = $(this).html();
+        $('.select-prov-item .select-text').val(html);
+        $('.select-prov-item').find('.select').hide();
+    });
+
+    // 点击显示门店选择框
+    $('.select-store-item .js-icon2').on('click',function () {
+        $('.select').hide();
+        $(this).siblings('.select').show();
+    });
+
+    // 点击选择门店
+    $('.select-store-item').on('click','.option',function () {
+        var html = $(this).html();
+        $('.select-store-item .select-text').val(html);
+        $('.select-store-item').find('.select').hide();
+    });
+
+
+  // 点击提交
+    $('.form-submit').on('click',function () {
+        var flag = Global.initValidate('.container');
+        if (!flag) {
+            return;
+        }
+    })
 </script>
 </body>
 
